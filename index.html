@@ -76,8 +76,8 @@
                 await wait(150);
                 document.getElementById('image').style.transform = "scale(1)";
                 document.getElementById('image').src = "./lilica_1.png";
-            } else if (count > 0) {
-                count--;
+            } else if (count > 0 || count == 0) {
+                count = 0;
                 document.getElementById('counter').textContent = count;
                 document.getElementById('image').src = "./lilica_3.png";
             }
