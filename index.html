@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カウントダウンアプリ</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        .top-text {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+            font-size: 38px;
+            color: #FF62AB;
+            font-weight: bold;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .counter {
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
+            color: #FF62AB;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .image {
+            width: 104%;
+            height: 130%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-text">リリカをタップしよう！</div>
+    <div class="container">
+        <div class="counter" id="counter">50</div>
+        <img src="./lilica_1.png" alt="画像" class="image" id="image">
+    </div>
+
+    <script>
+        function wait(milliseconds) {
+            return new Promise(resolve => setTimeout(resolve, milliseconds));
+        }
+        let count = 10;
+
+        document.getElementById('image').addEventListener('click', async () => {
+            if (count > 1) {
+                count--;
+                document.getElementById('counter').textContent = count;
+                document.getElementById('image').src = "./lilica_2.png";
+                document.getElementById('image').style.transform = "scale(0.97)";
+                await wait(150);
+                document.getElementById('image').style.transform = "scale(1)";
+                document.getElementById('image').src = "./lilica_1.png";
+            } else if (count > 0) {
+                count--;
+                document.getElementById('counter').textContent = count;
+                document.getElementById('image').src = "./lilica_3.png";
+            }
+        });
+    </script>
+</body>
+</html>
